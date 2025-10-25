@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-train"></i>
+                <span>RailWay Express</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#booking" class="nav-link">Book Tickets</a></li>
+                <li><a href="#my-bookings" class="nav-link">My Bookings</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <button class="login-btn" id="loginBtn">
+                <i class="fas fa-user"></i> Login
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Journey Begins Here</h1>
+            <p class="hero-subtitle">Book your train tickets easily and travel with comfort</p>
+            <button class="cta-btn" onclick="scrollToSection('booking')">
+                Book Now <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="hero-animation">
+            <div class="train-animation">
+                <i class="fas fa-train"></i>
+            </div>
+        </div>
+    </section>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-user-circle"></i> Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="signupName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="signupEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="signupPhone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="signupPassword" required placeholder="Create a password">
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <p class="form-footer">Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-ticket-alt"></i> Book Your Journey
+            </h2>
+            
+            <div class="booking-card">
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> From</label>
+                            <select id="fromStation" required>
+                                <option value="">Select Station</option>
+                                <option value="Mumbai">Mumbai Central</option>
+                                <option value="Delhi">New Delhi</option>
+                                <option value="Bangalore">Bangalore City</option>
+                                <option value="Chennai">Chennai Central</option>
+                                <option value="Kolkata">Howrah Junction</option>
+                                <option value="Hyderabad">Hyderabad Deccan</option>
+                                <option value="Pune">Pune Junction</option>
+                                <option value="Ahmedabad">Ahmedabad Junction</option>
+                            </select>
+                        </div>
+                        
+                        <div class="swap-btn-container">
+                            <button type="button" class="swap-btn" id="swapStations">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> To</label>
+                            <select id="toStation" required>
+                                <option value="">Select Station</option>
+                                <option value="Mumbai">Mumbai Central</option>
+                                <option value="Delhi">New Delhi</option>
+                                <option value="Bangalore">Bangalore City</option>
+                                <option value="Chennai">Chennai Central</option>
+                                <option value="Kolkata">Howrah Junction</option>
+                                <option value="Hyderabad">Hyderabad Deccan</option>
+                                <option value="Pune">Pune Junction</option>
+                                <option value="Ahmedabad">Ahmedabad Junction</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Journey Date</label>
+                            <input type="date" id="journeyDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Class</label>
+                            <select id="trainClass" required>
+                                <option value="">Select Class</option>
+                                <option value="AC First Class">AC First Class (1A)</option>
+                                <option value="AC 2-Tier">AC 2-Tier (2A)</option>
+                                <option value="AC 3-Tier">AC 3-Tier (3A)</option>
+                                <option value="Sleeper">Sleeper (SL)</option>
+                                <option value="Second Sitting">Second Sitting (2S)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-user-friends"></i> Passengers</label>
+                            <input type="number" id="passengers" min="1" max="6" value="1" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="search-btn">
+                        <i class="fas fa-search"></i> Search Trains
+                    </button>
+                </form>
+            </div>
+
+            <div id="trainResults" class="train-results"></div>
+        </div>
+    </section>
+
+    <section id="my-bookings" class="my-bookings-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-list"></i> My Bookings
+            </h2>
+            <div id="bookingsList" class="bookings-list">
+                <div class="no-bookings">
+                    <i class="fas fa-inbox"></i>
+                    <p>No bookings yet. Start booking your journey!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i> About Us
+            </h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast Booking</h3>
+                    <p>Book your tickets in seconds with our lightning-fast system</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Payment</h3>
+                    <p>Your transactions are safe with our secure payment gateway</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>We're here to help you anytime, anywhere</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-percent"></i>
+                    <h3>Best Prices</h3>
+                    <p>Get the best deals and offers on train tickets</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-train"></i> RailWay Express</h3>
+                    <p>Your trusted partner for hassle-free railway reservations</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#booking">Book Tickets</a></li>
+                        <li><a href="#my-bookings">My Bookings</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@railwayexpress.com</p>
+                    <p><i class="fas fa-phone"></i> +91 1800-XXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Railway Express. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content confirmation-modal">
+            <span class="close">&times;</span>
+            <div class="success-animation">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Booking Confirmed!</h2>
+            <div id="confirmationDetails"></div>
+            <button class="submit-btn" onclick="closeConfirmationModal()">Done</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
