@@ -52,6 +52,23 @@ document.addEventListener('DOMContentLoaded', function() {
     updateUIForAuth();
 });
 
+document.getElementById('toStation').addEventListener('change', avoidSameStationSelection);
+document.getElementById('fromStation').addEventListener('change', avoidSameStationSelection);
+
+function avoidSameStationSelection() {
+
+    const fromStation = document.getElementById('fromStation').value;
+    const toStation = document.getElementById('toStation').value;
+
+    if (fromStation === toStation) {
+        showNotification('From and To stations cannot be the same!', 'error');
+        document.getElementById('toStation').value = '';
+        document.getElementById('fromStation').value = '';
+        return false;
+    }
+    return true;
+}
+
 function initializeApp() {
     if (currentUser) {
         document.getElementById('loginBtn').innerHTML = `<i class="fas fa-user-circle"></i> ${currentUser.name}`;
